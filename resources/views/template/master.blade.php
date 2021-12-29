@@ -140,7 +140,7 @@
 <script src="{{asset('AdminLTE/dist/js/pages/dashboard2.js')}}"></script>
 
 {{-- Validator --}}
-<script src="{{asset('AdminLTE/dist/js/validator.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" integrity="sha512-dTu0vJs5ndrd3kPwnYixvOCsvef5SGYW/zSSK4bcjRBcZHzqThq7pt7PmCv55yb8iBvni0TSeIDV8RYKjZL36A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 @stack('script')
 </body>

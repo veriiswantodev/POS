@@ -97,6 +97,7 @@ Kategori
         $.get(url)
           .done((response) => {
             $('#modal-form [name=kategori]').val(response.kategori);
+            
           })
           .fail((errors) => {
             alert('Tidak dapat menampilkan Data!');

@@ -16,26 +16,39 @@ Produk
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
+              <div class="btn-group">
                 <button onclick="addForm('{{route('produk.store')}}')" class="btn btn-success btn-xs btn-flat">
                   <i class="fa fa-plus-circle"> Tambah</i>
                 </button>
+
+                <button onclick="deleteSelected('{{route ('produk.delete_selected')}}')" class="btn btn-danger btn-xs btn-flat">
+                  <i class="fa fa-trash"> Hapus</i>
+                </button>
+              </div>
+                
             </div>
 
             <div class="box-body table-responsive p-3">
-              <table class="table table-striped table-bordered" style="width: 100%;">
-                <thead>
-                  <th width="5%">No</th>
-                  <th>Kode</th>
-                  <th>Nama</th>
-                  <th>Kategori</th>
-                  <th>Merk</th>
-                  <th>Harga Beli</th>
-                  <th>harga Jual</th>
-                  <th>Diskon</th>
-                  <th>Stock</th>
-                  <th width="8%"><i class="fa fa-cog"></i></th>
-                </thead>
-              </table>
+              <form action="" class="form-produk">
+                @csrf
+                <table class="table table-striped table-bordered" style="width: 100%;">
+                  <thead>
+                    <th>
+                      <input type="checkbox" name="select_all" id="select_all">
+                    </th>
+                    <th width="5%">No</th>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th>Kategori</th>
+                    <th>Merk</th>
+                    <th>Harga Beli</th>
+                    <th>harga Jual</th>
+                    <th>Diskon</th>
+                    <th>Stock</th>
+                    <th width="8%"><i class="fa fa-cog"></i></th>
+                  </thead>
+                </table>
+              </form>
             </div>
         </div>
         <!-- /.card -->
@@ -59,6 +72,7 @@ Produk
             url: '{{route('produk.data')}}'
           }, 
           columns: [
+            {data: 'select_all'},
             {data: 'DT_RowIndex', searchable: false, sortbale: false},
             {data: 'kode_produk'},
             {data: 'nama_produk'},
@@ -72,7 +86,7 @@ Produk
           ]
         });
 
-
+        
         $('#modal-form').validator().on('submit', function(e){
           if(! e.preventDefault()){
             $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
@@ -85,7 +99,12 @@ Produk
                 return;
               });
             }
-          })
+          });
+
+        $('[name=select_all]').on('click', function(){
+          $(':checkbox').prop('checked', this.checked);
+        });
+        
       });
       
 
@@ -140,6 +159,24 @@ Produk
             })
           }
         }
+
+    function deleteSelected(url){
+      if($('input:checked').length > 1) {
+        if(confirm('Yakin ingin menghapus data yang terpilih?')){
+          $.post(url, $('.form-produk').serialize())
+            .done((response) => {
+              table.ajax.reload();
+            })
+            .fail((errors) => {
+              alert('Silahkan pilih data yang akan di hapus!');
+              return;
+            });
+          }
+        }else{
+          alert('Silahkan pilih data yang akan di hapus');
+          return;
+        }
+      }
         
     </script>
 @endpush
