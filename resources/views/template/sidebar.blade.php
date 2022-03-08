@@ -50,7 +50,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href="{{route('member.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-id-card"></i>
                         <p>Member</p>
                     </a>
