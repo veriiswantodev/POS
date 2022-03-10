@@ -55,10 +55,10 @@
       color: #fff;
     }
 
-    .barcode{
+    .barcode {
       position: absolute;
       top: 105pt;
-      left: .860rem;
+      left: .900rem;
       border: 1px solid #fff;
       padding: .5px;
       background: #fff;
@@ -93,10 +93,13 @@
                     <div class="nama">{{$item->nama}}</div>
                     <div class="telepon">{{$item->telepon}}</div>
                     <div class="barcode text-left">
-                      <img src="data:image/png;base64, {{DNS2D::getBarcodePNG("$item->kode_member", 'QRCODE')}}" alt="qrcode" height="45" width="45">
+                      <img src="data:image/png;base64, {{ DNS2D::getBarcodePNG("$item->kode_member", 'QRCODE') }}" alt="qrcode" height="45" width="45">
                     </div>
                   </div>
                 </td>
+                @if (count($datamember) == 1)
+                    <td class="text-center" style="width: 50%"></td>
+                @endif
             @endforeach
           </tr>
       @endforeach

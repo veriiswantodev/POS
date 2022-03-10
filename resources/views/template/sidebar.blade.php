@@ -57,7 +57,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href="{{route('supplier.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-truck"></i>
                         <p>Suplier</p>
                     </a>
