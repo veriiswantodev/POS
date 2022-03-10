@@ -62,8 +62,8 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $member  = Member::latest()->first();
-        $kode_member = (int)$member->kode_member+1 ?? 1;
+        $member  = Member::latest()->first() ?? new Member();
+        $kode_member = (int)$member->kode_member+1;
 
         $member = new member();
         $member->kode_member = tambah_nol_depan($kode_member, 6);
