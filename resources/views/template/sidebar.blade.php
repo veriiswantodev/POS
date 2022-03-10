@@ -73,7 +73,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href="{{route('pembelian.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-download"></i>
                         <p>Pembelian</p>
                     </a>
