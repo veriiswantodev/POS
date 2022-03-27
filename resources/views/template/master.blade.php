@@ -34,6 +34,8 @@
 
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('AdminLTE/plugins/summernote/summernote-bs4.min.css')}}">
+
+  @stack('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -134,10 +136,10 @@
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{asset('AdminLTE/dist/js/demo.js')}}"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('AdminLTE/dist/js/pages/dashboard.js')}}"></script>
+{{-- <script src="{{asset('AdminLTE/dist/js/pages/dashboard.js')}}"></script> --}}
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('AdminLTE/dist/js/pages/dashboard2.js')}}"></script>
+{{-- <script src="{{asset('AdminLTE/dist/js/pages/dashboard2.js')}}"></script> --}}
 
 {{-- Validator --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" integrity="sha512-dTu0vJs5ndrd3kPwnYixvOCsvef5SGYW/zSSK4bcjRBcZHzqThq7pt7PmCv55yb8iBvni0TSeIDV8RYKjZL36A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
