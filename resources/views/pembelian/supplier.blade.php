@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-               <table class="table table-striped table-bordered">
+               <table class="table table-striped table-bordered table-supplier">
                     <thead>
                         <th width="5%">No</th>
                         <th>Nama</th>

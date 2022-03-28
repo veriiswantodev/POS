@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/pengeluaran/data', [PengeluaranController::class, 'data'])->name('pengeluaran.data');
     Route::resource('/pengeluaran', PengeluaranController::class);
 
+    Route::get('/pembelian/data', [PembelianController::class, 'data'])->name('pembelian.data');
     Route::get('/pembelian/{id}/create', [PembelianController::class, 'create'])->name('pembelian.create');
     Route::resource('/pembelian', PembelianController::class)->except('create');
 

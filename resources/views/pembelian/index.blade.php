@@ -6,7 +6,7 @@ Daftar Pembelian
 
 @section('breadcumb')
 @parent
-<li class="breadcrumb-item active">Pembelian</li>
+<li class="breadcrumb-item active">DaftarPembelian</li>
 @endsection
 
 @section('content')
@@ -21,12 +21,18 @@ Daftar Pembelian
                   <i class="fa fa-plus-circle"> Transaksi Baru</i>
                 </button>
 
+                @empty(! session('id_pembelian'))
+                  <a href="{{route('pembelian_detail.index')}}" class="btn btn-primary btn-xs btn-flat">
+                    <i class="fa fa-edit"> Transaksi Aktif</i>
+                  </a>              
+                @endempty
+
               </div>
                 
             </div>
 
             <div class="box-body table-responsive p-3">
-              <table class="table table-striped table-bordered" style="width: 100%;">
+              <table class="table table-pembelian table-striped table-bordered" style="width: 100%;">
                 <thead>
                   <th width="5%">No</th>
                   <th>Tanggal</th>
@@ -46,27 +52,45 @@ Daftar Pembelian
 </div>
 
 @include('pembelian.supplier')
+@include('pembelian.detail')
 @endsection
 
 @push('script')
     <script>
 
-      let table;
+      let table, table1;
       
       $( function() {
-        table = $('.table').DataTable({
+        table = $('.table-pembelian').DataTable({
           proccesing: true,
           autowidth: false,
-          // ajax: {
-          //   url: '{{route('supplier.data')}}'
-          // }, 
-          // columns: [
-          //   {data: 'DT_RowIndex', searchable: false, sortbale: false},
-          //   {data: 'nama'},
-          //   {data: 'telepon'},
-          //   {data: 'alamat'},
-          //   {data: 'aksi', searchable: false, sortable: false}
-          // ]
+          ajax: {
+            url: '{{route('pembelian.data')}}'
+          }, 
+          columns: [
+            {data: 'DT_RowIndex', searchable: false, sortbale: false},
+            {data: 'tanggal'},
+            {data: 'suplier'},
+            {data: 'total_item'},
+            {data: 'total_harga'},
+            {data: 'diskon'},
+            {data: 'bayar'},
+            {data: 'aksi', searchable: false, sortable: false}
+          ]
+        });
+
+        $('.table-supplier').DataTable();
+
+        table1 = $('.table-detail').DataTable({
+          proccesing: true, 
+          columns: [
+            {data: 'DT_RowIndex', searchable: false, sortbale: false},
+            {data: 'kode_produk'},
+            {data: 'nama_produk'},
+            {data: 'harga_beli'},
+            {data: 'jumlah'},
+            {data: 'subtotal'},
+          ]
         });
       });
       
@@ -76,25 +100,10 @@ Daftar Pembelian
 
       }
 
-      function editForm(url){
-        $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Edit Supplier');
-
-        $('#modal-form form')[0].reset();
-        $('#modal-form form').attr('action', url);
-        $('#modal-form [name=_method]').val('put');
-        $('#modal-form [name=nama]').focus();
-
-        $.get(url)
-          .done((response) => {
-            $('#modal-form [name=nama]').val(response.nama);
-            $('#modal-form [name=telepon]').val(response.telepon);
-            $('#modal-form [name=alamat]').val(response.alamat);
-          })
-          .fail((errors) => {
-            alert('Tidak dapat menampilkan Data!');
-            return;
-          })
+      function showDetail(url){
+        $('#modal-detail').modal('show');
+        table1.ajax.url(url);
+        table1.ajax.reload();
       }
 
       function deleteData(url){

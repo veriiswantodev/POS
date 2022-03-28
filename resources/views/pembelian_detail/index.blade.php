@@ -107,7 +107,7 @@ Transaksi Pembelian
                             @csrf
                             <input type="hidden" name="id_pembelian" value="{{$id_pembelian}}">
                             <input type="hidden" name="total" id="total">
-                            <input type="hidden" name="total_item" id="total-item">
+                            <input type="hidden" name="total_item" id="total_item">
                             <input type="hidden" name="bayar" id="bayar">
 
                             <div class="form-group row">
@@ -135,8 +135,8 @@ Transaksi Pembelian
                 </div>
             </div>
 
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary btn-sm btn-flat pull-right btn-simpan"><i class="fa fa-floppy-o"> Simpan Transaksi</i></button>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-success btn-sm btn-flat float-right btn-simpan"><i class="fa fa-save"> Simpan Transaksi</i></button>
             </div>
         </div>
         <!-- /.card -->
@@ -214,6 +214,10 @@ Transaksi Pembelian
                 }
                 loadForm($(this).val());
             });
+
+            $('.btn-simpan').on('click', function() {
+                $('.form-pembelian').submit();
+            })
         });
 
 
