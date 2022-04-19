@@ -37,6 +37,9 @@ class PembelianController extends Controller
             ->addColumn('suplier', function($pembelian){
                 return $pembelian->suplier->nama;
             })
+            ->editColumn('diskon', function($pembelian){
+                return $pembelian->diskon . ' %';
+            })
             ->addColumn('aksi', function ($pembelian){
                 return '<div class="btn-group">
                     <button onclick="showDetail(`'. route('pembelian.show', $pembelian->id_pembelian) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-eye"></i></button>
@@ -108,6 +111,15 @@ class PembelianController extends Controller
 
     public function destroy($id){
         $pembelian = Pembelian::find($id);
+        $detail    = PembelianDetail::where('id_pembelian', $pembelian->id_pembelian)->get();
+        foreach ($detail as $item) {
+            $produk = Produk::find($item->id_produk);
+            if ($produk) {
+                $produk->stok -= $item->jumlah;
+                $produk->update();
+            }
+            $item->delete();
+        }
         $pembelian->delete();
 
         return response(null, 204);

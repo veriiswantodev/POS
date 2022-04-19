@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\models\Produk;
 use App\Models\Supplier;
 use App\Models\PembelianDetail;
+use App\Models\Pembelian;
 
 class PembelianDetailController extends Controller
 {
@@ -13,12 +14,13 @@ class PembelianDetailController extends Controller
         $id_pembelian = session('id_pembelian');
         $produk = Produk::orderBy('kode_produk', 'desc')->get();
         $supplier = Supplier::find(session('id_suplier'));
+        $diskon = Pembelian::find($id_pembelian)->diskon ?? 0;
 
         if (! $supplier) {
             abort(404);
         }
 
-        return view('pembelian_detail.index', compact('id_pembelian', 'produk', 'supplier'));
+        return view('pembelian_detail.index', compact('id_pembelian', 'produk', 'supplier', 'diskon'));
     }
 
     public function data($id){

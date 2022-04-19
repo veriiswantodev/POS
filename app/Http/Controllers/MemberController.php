@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use PDF;
+use App\Models\Setting;
 
 class MemberController extends Controller
 {
@@ -136,9 +137,11 @@ class MemberController extends Controller
 
         $datamember = $datamember->chunk(2);
 
+        $setting = Setting::first();
+
         $no = 1;
 
-        $pdf = PDF::loadview('member.cetak', compact('datamember', 'no'));
+        $pdf = PDF::loadview('member.cetak', compact('datamember', 'no', 'setting'));
         $pdf->setPaper(array(0, 0, 566.93, 850.39), 'potrait');
         return $pdf->stream('member.pdf');
     }
