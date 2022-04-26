@@ -80,21 +80,21 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href="{{route ('penjualan.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-upload"></i>
                         <p>Penjualan</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href="{{route ('transaksi.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-cart-arrow-down"></i>
                         <p>Transaksi Lama</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href="{{route ('transaksi.baru')}}" class="nav-link">
                         <i class="nav-icon fas fa-cart-arrow-down"></i>
                         <p>Transaksi Baru</p>
                     </a>
