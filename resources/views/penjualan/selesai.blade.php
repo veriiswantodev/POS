@@ -27,9 +27,9 @@ Transaksi Penjualan
             </div>
             <div class="card-footer">
               @if ($setting->tipe_nota == 1)
-              <button class="btn btn-warning btn-flat" onclick="notaKecil('{{ route('transaksi.nota_kecil') }}', 'Nota Kecil')">Cetak Ulang Nota</button>
+              <button class="btn btn-warning btn-flat" onclick="notaKecil('{{ route('transaksi.nota_kecil') }}', 'Nota Kecil')"><i class="fa fa-print"></i> Cetak Ulang Nota</button>
               @else
-                <button class="btn btn-warning btn-flat"><i class="fa fa-print" onclick="notaBesar({{route('transaksi.nota_besar')}}, 'Nota Besar')"></i> Cetak Ulang Nota</button>
+              <button class="btn btn-warning btn-flat" onclick="notaBesar('{{ route('transaksi.nota_besar') }}', 'Nota PDF')"><i class="fa fa-print"></i> Cetak Ulang Nota</button>
               @endif
               <a href="{{route('transaksi.baru')}}" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Transaksi Baru</a>
             </div>
@@ -46,11 +46,11 @@ Transaksi Penjualan
       document.cookie = "innerHeight=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
       function notaKecil(url, title){
-        popupCenter(url, title, 720, 675);
+        popupCenter(url, title, 625, 500);
       }
 
       function notaBesar(url, title){
-        popupCenter(url, title, 720, 675);
+        popupCenter(url, title, 900, 675);
       } 
 
       function popupCenter(url, title, w, h) {

@@ -6,6 +6,7 @@ use App\Models\Penjualan;
 use App\Models\PenjualanDetail;
 use App\Models\Produk;
 use App\Models\Setting;
+use PDF;
 use Illuminate\Http\Request;
 
 class PenjualanController extends Controller
@@ -52,7 +53,7 @@ class PenjualanController extends Controller
                 return '<span class="bg-lime color-pallet">' .$penjualan->member['kode_member'] ?? ''. '</span>';
             })
             ->editColumn('diskon', function($penjualan){
-                return $penjualan->diskon . ' %';
+                return $penjualan->diskon ?? '0' . ' %';
             })
             ->addColumn('diterima', function($penjualan){
                 return 'Rp. '. format_uang($penjualan->diterima ?? '');
@@ -151,6 +152,17 @@ class PenjualanController extends Controller
     }
 
     public function notaBesar(){
-        
+        $setting = Setting::first();
+        $penjualan = Penjualan::find(session('id_penjualan'));
+        if (! $penjualan) {
+            abort(404);
+        }
+        $detail = PenjualanDetail::with('produk')
+            ->where('id_penjualan', session('id_penjualan'))
+            ->get();
+
+        $pdf = PDF::loadview('penjualan.nota_besar', compact('setting', 'penjualan', 'detail'));
+        $pdf->setPaper(0,0,609,440, 'potrait');
+        return $pdf->stream('Invoice-'. date('d-m-Y-his') . '.pdf');
     }
 }
