@@ -89,7 +89,7 @@ Transaksi Penjualan
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <form action="{{route('transaksi.simpan')}}" class="form-pembelian" method="POST">
+                        <form action="{{route('transaksi.simpan')}}" class="form-penjualan" method="POST">
                             @csrf
                             <input type="hidden" name="id_penjualan" value="{{$id_penjualan}}">
                             <input type="hidden" name="total" id="total">
