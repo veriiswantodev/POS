@@ -9,6 +9,7 @@ use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PembelianDetailController;
 use App\Http\Controllers\PenjualanDetailController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\LaporanController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -70,4 +71,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/transaksi/{id}/data', [PenjualanDetailController::class, 'data'])->name('transaksi.data');
     Route::get('/transaksi/loadform/{diskon}/{total}/{diterima}', [PenjualanDetailController::class, 'loadform'])->name('transaksi.loadform');
     Route::resource('/transaksi', PenjualanDetailController::class)->except('show');
+
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/refresh', [LaporanController::class, 'refresh'])->name('laporan.refresh');
+    Route::get('/laporan/data/{awal}/{akhir}', [LaporanController::class, 'data'])->name('laporan.data');
+    Route::get('/laporan/pdf/{awal/{akhir}}', [LaporanController::class, 'exportPDF'])->name('laporan.exportPDF');
 });
