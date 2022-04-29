@@ -24,8 +24,8 @@ Laporan Pendapatan {{ tgl_ID($tgl_awal, false) }} s/d {{ tgl_ID($tgl_akhir, fals
                 <button onclick="updatePeriode()" class="btn btn-warning btn-xs btn-flat">
                   <i class="fa fa-edit"> Ubah Periode</i>
                 </button>
-                <a href="{{ route('laporan.exportPDF', [$tgl_awal, $tgl_akhir]) }}" target="_blank" class="btn btn-danger btn-xs btn-flat">
-                  <i class="fa fa-print"> Print PDF</i>
+                <a href="{{ route('laporan.export_pdf', [$tgl_awal, $tgl_akhir]) }}" target="_blank" class="btn btn-success btn-xs btn-flat">
+                  <i class="fa fa-file-pdf"> Print PDF</i>
                 </a>
 
               </div>

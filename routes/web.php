@@ -73,7 +73,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('/transaksi', PenjualanDetailController::class)->except('show');
 
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-    Route::get('/laporan/refresh', [LaporanController::class, 'refresh'])->name('laporan.refresh');
     Route::get('/laporan/data/{awal}/{akhir}', [LaporanController::class, 'data'])->name('laporan.data');
-    Route::get('/laporan/pdf/{awal/{akhir}}', [LaporanController::class, 'exportPDF'])->name('laporan.exportPDF');
+    Route::get('/laporan/pdf/{awal}/{akhir}', [LaporanController::class, 'exportPDF'])->name('laporan.export_pdf');
 });
