@@ -3,9 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0.0">
-  <title> {{config ('app.name')}} | @yield('title') </title>
+  <title> {{ $setting->nama_perusahaan }} | @yield('title') </title>
 
   <meta name="csrf-token" content="{{csrf_token()}}">
+
+  <link rel="icon" href="{{ url($setting->path_logo) }}" type="iamge/png">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -136,6 +138,12 @@
 {{-- Validator --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" integrity="sha512-dTu0vJs5ndrd3kPwnYixvOCsvef5SGYW/zSSK4bcjRBcZHzqThq7pt7PmCv55yb8iBvni0TSeIDV8RYKjZL36A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script>
+  function preview(selector, temporaryFile, width = 200){
+    $(selector).empty();
+    $(selector).append(`<img src="${window.URL.createObjectURL(temporaryFile)}" width="${width}">`);
+  }
+</script>
 @stack('script')
 </body>
 </html>
