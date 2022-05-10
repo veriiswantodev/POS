@@ -22,10 +22,10 @@ class PenjualanDetailController extends Controller
             $memberSelected = Penjualan::find($id_penjualan)->member ?? new Member(); //cek apakah ada member atau tidak
             return view('penjualan_detail.index', compact('produk', 'member', 'id_penjualan', 'diskon', 'penjualan', 'memberSelected'));
         }else{
-            if(auth()->user()->level == 1){
+            if(auth()->user()->level){
                 return redirect()->route('transaksi.baru');
             }else{
-                return redirect()->route('home');
+                return redirect()->route('dashboard');
             }
         }
     }

@@ -50,7 +50,8 @@ class PenjualanController extends Controller
                 return tgl_ID($penjualan->created_at, false);
             })
             ->addColumn('kode_member', function($penjualan){
-                return '<span class="bg-lime color-pallet">' .$penjualan->member['kode_member'] ?? ''. '</span>';
+                $member = $penjualan->member->kode_member ?? '';
+                return '<span class="badge badge-pill badge-success">'. $member .'</span>';
             })
             ->editColumn('diskon', function($penjualan){
                 return $penjualan->diskon ?? '0' . ' %';
