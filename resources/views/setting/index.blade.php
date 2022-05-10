@@ -131,7 +131,7 @@ Setting
         $('[name="alamat"]').val(response.alamat);
         $('[name="diskon"]').val(response.diskon);
         $('[name="tipe_nota"]').val(response.tipe_nota);
-        $('title').text(response.nama_perusahaan + ' |Pengaturan');
+        $('title').text(response.nama_perusahaan + ' | Pengaturan');
 
         $('.tampil-logo').html(`<img src="${response.path_logo}" width="200">`);
         $('.tampil-kartu-member').html(`<img src="${response.path_kartu_member}" width="300">`);
