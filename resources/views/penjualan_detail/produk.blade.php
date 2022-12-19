@@ -26,10 +26,15 @@
                                 <td>{{ $item->nama_produk }}</td>
                                 <td width="15%">{{ format_uang($item->harga_jual) }}</td>
                                 <td width="15%">
+                                @if ($item->stok > 0)
+                                    
                                     <a href="#" class="btn btn-primary btn-xs btn-flat" onclick="pilihProduk('{{$item->id_produk}}', '{{$item->kode_produk}}')">
                                         <i class="fa fa-check-circle"></i> 
                                         Pilih
                                     </a>
+                                @else
+                                    stok kosong
+                                @endif
                                 </td>
                             </tr>
                         @endforeach
